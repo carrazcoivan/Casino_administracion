@@ -10,6 +10,7 @@ https://docs.djangoproject.com/en/dev/ref/settings/
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
+
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
 
@@ -20,11 +21,13 @@ BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 SECRET_KEY = '9*j_-ev=a4@exvmc_fev7@^++rl47u@jd9%vz58nf5+b41^i_s'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
+DEBUG = False
 TEMPLATE_DEBUG = True
 
-ALLOWED_HOSTS = []
+if DEBUG == True:
+	ALLOWED_HOSTS = []
+else:
+	ALLOWED_HOSTS = ['localhost']
 
 
 # Application definition
@@ -62,6 +65,9 @@ DATABASES = {
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
+
+# declares the local template files to be used
+TEMPLATE_DIRS = [os.path.join(BASE_DIR, 'templates')]
 
 # Internationalization
 # https://docs.djangoproject.com/en/dev/topics/i18n/

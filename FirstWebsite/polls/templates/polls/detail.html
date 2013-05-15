@@ -1,0 +1,29 @@
+<!-- 
+// first version
+<h1>{{ poll.question }}</h1>
+
+<p>{{ poll }} {{ owner }} was here</p>
+
+<ul>
+{% for choice in poll.choice_set.all %}
+    <li>{{ choice.choice_text }}</li>
+{% endfor %}
+</ul>
+-->
+
+<!-- second version -->
+<h1>{{ poll.question }}</h1>
+
+{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+
+<form action="{% url 'polls:vote' poll.id %}" method="post">
+{% csrf_token %}
+{% for choice in poll.choice_set.all %}
+    <input type="radio" name="choice" id="choice{{ forloop.counter }}" value="{{ choice.id }}" />
+    <label for="choice{{ forloop.counter }}">{{ choice.choice_text }}</label><br />
+{% endfor %}
+<input type="submit" value="Vote" />
+</form>
+
+
+<p style="font-weight: bold; color: red;">polls.detail.html</p>

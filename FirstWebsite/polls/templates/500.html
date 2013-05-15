@@ -1,0 +1,8 @@
+<h1>{{ title }} Poll error</h1>
+<p>This is a 500 error</p>
+<h1>{{ poll.question }}</h1>
+<ul>
+{% for choice in poll.choice_set.all %}
+    <li>{{ choice.choice_text }}</li>
+{% endfor %}
+</ul>
